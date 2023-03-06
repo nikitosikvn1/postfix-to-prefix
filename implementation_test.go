@@ -26,7 +26,7 @@ func TestPostfixToPrefix2(t *testing.T) {
 func TestPostfixToPrefix3(t *testing.T) {
     res, err := PostfixToPrefix("1 2 3 * + 4 +")
     if assert.Nil(t, err) {
-        assert.Equal(t, "+ + 1 * 2 3 45", res)
+        assert.Equal(t, "+ + 1 * 2 3 4", res)
     }
 }
 
