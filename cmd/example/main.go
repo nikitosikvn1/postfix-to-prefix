@@ -1,59 +1,58 @@
 package main
 
 import (
-    "bufio"
+    "strings"
     "flag"
-    "fmt"
     "log"
     "os"
+    "io"
 
     lab2 "github.com/nikitosikvn1/SEC-Lab-2"
 )
 
 var (
-    inputExpression = flag.String("e", "", "Expression to compute")
-    inputFile = flag.String("f", "", "Path to the input file")
-    outputFile = flag.String("o", "", "Path to the output file")
-
-    exp string
-    // TODO: Add other flags support for input and output configuration.
+    exprFlag = flag.String("e", "", "Expression to compute")
+    fileFlag = flag.String("f", "", "Path to the input file")
+    outFlag = flag.String("o", "", "Path to the output file")
 )
 
 func main() {
     flag.Parse()
-    
-    // If a value was passed for the -e flag, then we read the expression
-    if *inputExpression != "" {
-        exp = *inputExpression
 
-    // If a path was passed for the -f flag, then we read the contents of the file
-    } else if *inputFile != "" {
-        fileInfo, err := os.Stat(*inputFile)
+    // Getting input expression
+    var reader io.Reader
+    if *exprFlag != "" {
+        reader = strings.NewReader(*exprFlag)
+    } else if *fileFlag != "" {
+        inpfile, err := os.Open(*fileFlag)
         if err != nil {
-            log.Fatal("error: ", err)
+            log.Fatal(err)
         }
-
-        if fileInfo.IsDir() {
-            log.Fatal(*inputFile, " is a directory, not a file")
-        }
-
-        file, err := os.Open(*inputFile)
-        if err != nil {
-            log.Fatal("error: ", err)
-        }
-        
-        defer file.Close()
-
-        scanner := bufio.NewScanner(file)
-        scanner.Scan()
-        exp = scanner.Text()
-
-    // If -e, -f did not receive a value, then terminate the program
+        defer inpfile.Close()
+        reader = inpfile
     } else {
-        log.Fatal("error. No input was passed")
+        log.Fatal("either -e or -f flag must be provided")
     }
-
-    fmt.Println(exp)
+    
+    // Output of the resulting expression
+    var writer io.Writer
+    if *outFlag != "" {
+        outfile, err := os.Create(*outFlag)
+        if err != nil {
+            log.Fatal(err)
+        }
+        defer outfile.Close()
+        writer = outfile
+    } else {
+        writer = os.Stdout
+    }
+    
+    // Call handler
+    handler := lab2.NewComputeHandler(reader, writer)
+    err := handler.Compute()
+    if err != nil {
+        log.Fatal(err)
+    }
 
     // TODO: Change this to accept input from the command line arguments as described in the task and
     //       output the results using the ComputeHandler instance.
@@ -63,6 +62,6 @@ func main() {
     //       }
     //       err := handler.Compute()
 
-    res, _:= lab2.PostfixToPrefix("1 2 3 * + 4 +")
-    fmt.Println(res)
+    // res, _:= lab2.PostfixToPrefix("1 2 3 * + 4 +")
+    // fmt.Println(res)
 }
