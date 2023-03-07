@@ -23,3 +23,26 @@ Input from file output to console:
 Input from file output to file:
 
 ![4](https://github.com/nikitosikvn1/SEC-Lab-2/blob/master/img/Screenshot_4.jpg?raw=true)
+
+### Flags:
+
+To use this tool, you need to specify the appropriate flags. The following flags are available:
+
+enter a string directly in the console:
+```bash
+-e <input_string>
+```
+enter a line from a file:
+```bash
+-f <file_path>
+```
+output data directly to a file:
+```bash
+-o <file_path>
+```
+
+### Links:
+
+[Deliberate unsuccessful build of the program](https://github.com/nikitosikvn1/SEC-Lab-2/actions/runs/4348941282)
+
+[Successful pull request](https://github.com/nikitosikvn1/SEC-Lab-2/actions/runs/4356067566)
