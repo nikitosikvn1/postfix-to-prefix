@@ -10,16 +10,16 @@ This converter tool supports file mode, which means that you can receive data fr
 
 Input from console output to console:
 
-![1](/SEC-Lab-2/img/Screenshot_1.jpg)
+![1](https://github.com/nikitosikvn1/SEC-Lab-2/blob/master/img/Screenshot_1.jpg?raw=true)
 
 Input from console output to file:
 
-![2](/SEC-Lab-2/img/Screenshot_2.jpg)
+![2](https://github.com/nikitosikvn1/SEC-Lab-2/blob/master/img/Screenshot_2.jpg?raw=true)
 
 Input from file output to console:
 
-![3](/SEC-Lab-2/img/Screenshot_3.jpg)
+![3](https://github.com/nikitosikvn1/SEC-Lab-2/blob/master/img/Screenshot_3.jpg?raw=true)
 
 Input from file output to file:
 
-![4](/SEC-Lab-2/img/Screenshot_4.jpg)
+![4](https://github.com/nikitosikvn1/SEC-Lab-2/blob/master/img/Screenshot_4.jpg?raw=true)
