@@ -28,6 +28,16 @@ func TestComputeHandler_Compute(t *testing.T) {
             expectedOutput: "- * 4 5 3",
             expectedError:  nil,
         },
+		{
+            input:          "10 5 - 2 / 3 4 * +",
+            expectedOutput: "+ / - 10 5 2 * 3 4",
+            expectedError:  nil,
+        },
+		{
+            input:          "4 5 + 6 *",
+            expectedOutput: "* + 4 5 6",
+            expectedError:  nil,
+        },
         {
             input:          "",
             expectedOutput: "",
